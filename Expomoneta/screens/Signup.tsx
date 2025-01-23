@@ -1,3 +1,4 @@
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import {
   View,
@@ -7,6 +8,8 @@ import {
   GestureResponderEvent,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { RootStackParamList } from './types';
+
 
 // Define Props for FeatureItem
 interface FeatureItemProps {
@@ -35,6 +38,9 @@ const FeatureItem: React.FC<FeatureItemProps> = ({ iconName, title, description 
 
 // Signup Component
 const Signup: React.FC<SignupProps> = ({ navigation }) => {
+
+  type SplashScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Splash'>;
+  
   const handleGoBack = (event: GestureResponderEvent) => {
     navigation.goBack();
   };
@@ -94,12 +100,15 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#F7F7F7',
+    marginTop: 50,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 50,
+    height: 40,
+    borderColor:'black',
+    borderWidth:2,
     position: 'relative',
     marginBottom: 40,
   },
@@ -126,12 +135,15 @@ const styles = StyleSheet.create({
     lineHeight: 23,
   },
   features: {
+    paddingTop: 20,
     backgroundColor: 'white',
     borderRadius: 30,
     padding: 20,
     marginBottom: 40,
+    paddingBottom: 40
   },
   featureItem: {
+    marginTop: 30,
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 15,

@@ -1,12 +1,18 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
 
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { RootStackParamList } from './types';
+
+  type SplashScreenNavigationProp = StackNavigationProp<RootStackParamList, 'CreateAccount'>;
 
 // Functional component in TypeScript
 const CreateAccountScreen: React.FC = () => {
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<SplashScreenNavigationProp>();
+
 
   return (
     <View style={styles.container}>
