@@ -1,0 +1,16 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": "./", // Ensures relative paths work correctly
+    "paths": {
+      "*": ["./*"] // Maps all modules relative to the root
+    }
+  },
+  "include": [
+    "**/*" // Includes all files in the project
+  ],
+  "exclude": [
+    "node_modules" // Excludes dependencies
+  ]
+}
