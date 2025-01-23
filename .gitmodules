@@ -1,0 +1,3 @@
+[submodule "Expomoneta"]
+	path = Expomoneta
+	url = https://github.com/kalpandekunal/Moneta_Practice_App.git
