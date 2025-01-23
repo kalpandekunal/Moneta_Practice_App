@@ -39,7 +39,7 @@ const CreateAccountScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 30,
+    padding: 20,
     backgroundColor: '#F5F5F5',
   },
   logo: {
