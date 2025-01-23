@@ -98,6 +98,7 @@ const Signup: React.FC<SignupProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 60,
     padding: 20,
     backgroundColor: '#F7F7F7',
     marginTop: 50,
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 16,
-    color: 'gray',
+    color: 'black',
     marginBottom: 40,
     lineHeight: 23,
   },
@@ -176,9 +177,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#6C63FF',
-    borderRadius: 8,
-    padding: 15,
+    backgroundColor: '#6A0DAD',
+    borderRadius: 50,
+    padding: 20,
   },
   appleButtonText: {
     color: 'white',
@@ -186,6 +187,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 10,
   },
+  // button: {
+  //   backgroundColor: '#6A0DAD',
+  //   padding: 20,
+  //   borderRadius: 50,
+  //   alignItems: 'center',
+  //   width: '50%',
+  // }
 });
 
 export default Signup;

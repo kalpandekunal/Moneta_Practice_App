@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   logo: {
-    paddingTop: 40,
+    paddingTop: 30,
     fontSize: 60,
     fontWeight: 'bold',
     color: '#000',
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   description: {
-    fontSize: 16,
+    fontSize: 18,
     color: '#000',
     marginBottom: 20,
     fontWeight: 'bold',
