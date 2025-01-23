@@ -8,6 +8,7 @@ import {
   GestureResponderEvent,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as AppleAuthentication from 'expo-apple-authentication';
 import { RootStackParamList } from './types';
 
 
@@ -44,6 +45,41 @@ const Signup: React.FC<SignupProps> = ({ navigation }) => {
   const handleGoBack = (event: GestureResponderEvent) => {
     navigation.goBack();
   };
+
+  // Apple Sign-In Function
+  const handleAppleSignIn = async () => {
+    try {
+      const appleAuthResponse = await AppleAuthentication.signInAsync({
+        requestedScopes: [
+          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+        ],
+      });
+  
+      console.log('Apple Sign-In Response:', appleAuthResponse);
+  
+      // Extract user details
+      const { user, email, fullName, identityToken } = appleAuthResponse;
+      console.log(`User ID: ${user}`);
+      console.log(`Email: ${email}`);
+      console.log(`Full Name:`, fullName);
+      console.log(`Identity Token: ${identityToken}`);
+  
+      // Use the response (e.g., send data to the backend or authenticate user)
+    } catch (error) {
+      // Log the full error object to understand the structure
+      console.error('Error with Apple Sign-In:', error);
+  
+      // Check for error code if available
+      // if (error?.code === 'ERR_CANCELED') {
+      //   console.log('User canceled Apple Sign-In');
+      // } else {
+      //   // Provide additional error context if the code is not available
+      //   console.log('An unexpected error occurred during Apple Sign-In.');
+      // }
+    }
+  };
+  
 
   return (
     <View style={styles.container}>
@@ -86,10 +122,13 @@ const Signup: React.FC<SignupProps> = ({ navigation }) => {
       </Text>
 
       {/* Apple Button */}
-      <TouchableOpacity style={styles.appleButton}>
-        <Icon name="apple" size={24} color="white" />
-        <Text style={styles.appleButtonText}>Continue with Apple</Text>
-      </TouchableOpacity>
+      <AppleAuthentication.AppleAuthenticationButton
+        buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+        buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+        cornerRadius={8}
+        style={styles.appleButton}
+        onPress={handleAppleSignIn}
+      />
     </View>
   );
 };
@@ -104,6 +143,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   header: {
+    marginTop: 40,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -174,18 +214,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   appleButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#6A0DAD',
-    borderRadius: 50,
-    padding: 20,
-  },
-  appleButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginLeft: 10,
+    width: '100%',
+    height: 50,
   },
   // button: {
   //   backgroundColor: '#6A0DAD',
