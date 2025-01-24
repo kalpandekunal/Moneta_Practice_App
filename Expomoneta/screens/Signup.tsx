@@ -6,10 +6,17 @@ import {
   StyleSheet,
   TouchableOpacity,
   GestureResponderEvent,
+  Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RootStackParamList } from './types';
 
+// Screen dimensions
+const { width, height } = Dimensions.get('window');
+
+// Scale utilities
+const scale = (size: number) => (width / 375) * size; // Assuming 375 is the base width
+const verticalScale = (size: number) => (height / 812) * size; // Assuming 812 is the base height
 
 // Define Props for FeatureItem
 interface FeatureItemProps {
@@ -28,7 +35,7 @@ interface SignupProps {
 // FeatureItem Component
 const FeatureItem: React.FC<FeatureItemProps> = ({ iconName, title, description }) => (
   <View style={styles.featureItem}>
-    <Icon name={iconName} size={24} color="black" style={styles.featureIcon} />
+    <Icon name={iconName} size={scale(24)} color="black" style={styles.featureIcon} />
     <View style={styles.featureContent}>
       <Text style={styles.featureTitle}>{title}</Text>
       <Text style={styles.featureDescription}>{description}</Text>
@@ -38,9 +45,6 @@ const FeatureItem: React.FC<FeatureItemProps> = ({ iconName, title, description 
 
 // Signup Component
 const Signup: React.FC<SignupProps> = ({ navigation }) => {
-
-  type SplashScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Splash'>;
-  
   const handleGoBack = (event: GestureResponderEvent) => {
     navigation.goBack();
   };
@@ -50,7 +54,7 @@ const Signup: React.FC<SignupProps> = ({ navigation }) => {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={handleGoBack} style={styles.iconContainer}>
-          <Icon name="arrow-back" size={24} color="black" />
+          <Icon name="arrow-back" size={scale(24)} color="black" />
         </TouchableOpacity>
         <Text style={styles.headerText}>Create Account</Text>
       </View>
@@ -87,7 +91,7 @@ const Signup: React.FC<SignupProps> = ({ navigation }) => {
 
       {/* Apple Button */}
       <TouchableOpacity style={styles.appleButton}>
-        <Icon name="apple" size={24} color="white" />
+        <Icon name="apple" size={scale(24)} color="white" />
         <Text style={styles.appleButtonText}>Continue with Apple</Text>
       </TouchableOpacity>
     </View>
@@ -98,76 +102,71 @@ const Signup: React.FC<SignupProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 60,
-    padding: 20,
+    paddingTop: verticalScale(60),
+    paddingHorizontal: scale(20),
     backgroundColor: '#F7F7F7',
-    marginTop: 50,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 40,
-    borderColor:'black',
-    borderWidth:2,
-    position: 'relative',
-    marginBottom: 40,
+    height: verticalScale(40),
+    marginBottom: verticalScale(40),
   },
   iconContainer: {
     backgroundColor: 'white',
-    padding: 10,
+    padding: scale(10),
     borderRadius: 50,
     position: 'absolute',
-    left: 1,
+    left: scale(10),
   },
   headerText: {
-    fontSize: 14,
+    fontSize: scale(16),
     fontWeight: 'bold',
   },
   title: {
-    fontSize: 20,
+    fontSize: scale(22),
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: verticalScale(20),
   },
   description: {
-    fontSize: 16,
+    fontSize: scale(16),
     color: 'black',
-    marginBottom: 40,
-    lineHeight: 23,
+    marginBottom: verticalScale(40),
+    lineHeight: verticalScale(23),
   },
   features: {
-    paddingTop: 20,
+    paddingVertical: verticalScale(20), // Ensure proper padding for vertical space
+    paddingHorizontal: scale(20),
     backgroundColor: 'white',
-    borderRadius: 30,
-    padding: 20,
-    marginBottom: 40,
-    paddingBottom: 40
+    borderRadius: scale(30),
+    marginBottom: verticalScale(40),
   },
   featureItem: {
-    marginTop: 30,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 15,
-  },
-  featureIcon: {
-    marginRight: 10,
+    marginBottom: verticalScale(20), // Adjust spacing between items
+    overflow: 'hidden', // Prevent any child overflow
   },
   featureContent: {
-    flex: 1,
+    flex: 1, // Ensure content does not exceed container
+  },
+  featureIcon: {
+    marginRight: scale(10),
   },
   featureTitle: {
-    fontSize: 16,
+    fontSize: scale(16),
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: verticalScale(5),
   },
   featureDescription: {
-    fontSize: 14,
+    fontSize: scale(14),
     color: 'gray',
   },
   faqText: {
     textAlign: 'center',
-    fontSize: 14,
-    marginBottom: 20,
+    fontSize: scale(14),
+    marginBottom: verticalScale(20),
   },
   faqLink: {
     color: '#6C63FF',
@@ -178,22 +177,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#6A0DAD',
-    borderRadius: 50,
-    padding: 20,
+    borderRadius: scale(50),
+    padding: verticalScale(20),
   },
   appleButtonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: scale(16),
     fontWeight: 'bold',
-    marginLeft: 10,
+    marginLeft: scale(10),
   },
-  // button: {
-  //   backgroundColor: '#6A0DAD',
-  //   padding: 20,
-  //   borderRadius: 50,
-  //   alignItems: 'center',
-  //   width: '50%',
-  // }
 });
 
 export default Signup;
