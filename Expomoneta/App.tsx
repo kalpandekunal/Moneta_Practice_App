@@ -6,6 +6,7 @@ import SplashScreen from './screens/SplashScreen';
 import CreateAccountScreen from './screens/CreateAccountScreen';
 import { RootStackParamList } from './screens/types'
 import Signup from 'screens/Signup';
+import ReedemTokenConfirmScreen from 'screens/RedeemTokenConfirmScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -16,6 +17,7 @@ export default function App() {
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
         <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="RedeemToken" component={ReedemTokenConfirmScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>
