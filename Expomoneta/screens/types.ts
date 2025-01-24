@@ -3,5 +3,6 @@ export type RootStackParamList = {
     Splash: undefined;
     CreateAccount: undefined;
     Signup: undefined;
+    RedeemToken: undefined;
   };
   
